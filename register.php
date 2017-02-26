@@ -1,13 +1,13 @@
 <?php
-	require_once("user_conf.php");
+require_once("user_conf.php");
 session_start();
 include_once('templates/'.$theme.'/header.php');
 if (isset($_POST[ 'nickname' ])) {
-	$nickname = $_POST[ 'nickname' ];
-	$fullname = $_POST[ 'fullname' ];
-	$sex = $_POST[ 'sex' ];
-	$email = $_POST[ 'email' ];
-	$password = $_POST[ 'password' ];
+	$nickname = stripslashes($_POST[ 'nickname' ]);
+	$fullname = stripslashes($_POST[ 'fullname' ]);
+	$sex = stripslashes($_POST[ 'sex' ]);
+	$email = stripslashes($_POST[ 'email' ]);
+	$password = stripslashes($_POST[ 'password' ]);
 
 
 	$salt_length=16;
@@ -27,34 +27,51 @@ if (isset($_POST[ 'nickname' ])) {
 		exit();
 	}
 
-	$query = 'insert into users_info(nickname, fullname, email, hash, salt, sex) values ("'.$nickname.'", "'.$fullname.'", "'.$email.'", "'.$hash_value.'", "'.$salt_value.'", "'.$sex.'")';
+	if ($nickname != '' && $fullname != '' && $sex != '' && $email != '' && $password != '') {
+		$query = 'insert into users_info(nickname, fullname, email, hash, salt, sex) values ("'.$nickname.'", "'.$fullname.'", "'.$email.'", "'.$hash_value.'", "'.$salt_value.'", "'.$sex.'")';
 
-	$result = $db_conn->query($query);
-	if ($result) {
-		echo '<a href="login.php">Register success, login please!</a>';
+		$result = $db_conn->query($query);
+		if ($result) {
+			echo '<a href="login.php">Register success, login please!</a>';
+		} else {
+			echo 'Register failed!<a href="register.php">Redo register!</a>';
+		}
 	} else {
-		echo 'Register failed!<a href="register.php">Redo register!</a>';
+		echo 'Please fill every item!&nbsp;&nbsp;&nbsp;&nbsp;<a href="register.php">regiter</a>';
 	}
 	$db_conn->close();
 } else {
 echo '<h1>Register</h1>';
 echo '<form method="post" action="register.php">';
-echo '<table>';
-echo '<tr><td>nickname:</td>';
-echo '<td><input type="text" name="nickname"></td></tr>';
-echo '<tr><td>fullname:</td>';
-echo '<td><input type="text" name="fullname"></td></tr>';
-echo '<tr><td>Sex:</td>';
-echo '<td><input type="radio" name="sex" value="1" />man</td>';
-echo '<td><input type="radio" name="sex" value="2" />woman</td>';
-echo '<td><input type="radio" name="sex" value="3" />intersex</td></tr>';
-echo '<tr><td>email:</td>';
-echo '<td><input type="email" name="email"></td></tr>';
-echo '<tr><td>Password:</td>';
-echo '<td><input type="password" name="password"></td></tr>';
-echo '<tr><td colspan="2" align="center">';
-echo '<input type="submit" value="Log in"></td></tr>';
-echo '</table></form>';
+echo '<div class="form-group">';
+echo '<label for="username">Username</label>
+      <input type="text" id="username" class="form-control" name="nickname" placeholder="username">';
+echo '</div>';
+echo '<div class="form-group">';
+echo '<label for="fullname">Fullname</label>
+      <input type="text" id="fullname" class="form-control" name="fullname" placeholder="fullname">';
+echo '</div>';
+echo '<div class="form-group">';
+echo '<label for="email">Email</label>
+      <input type="email" id="email" class="form-control" name="email" placeholder="email">';
+echo '</div>';
+echo '<div class="form-group">';
+echo '<label for="password">Password</label>
+      <input type="password" id="password" class="form-control" name="password" placeholder="password">';
+echo '</div>';
+echo '<div class="form-group">';
+echo '<div class="radio-inline">';
+echo '<label><input type="radio" name="sex" id="sex1" value="1" checked>man</label>';
+echo '</div>';
+echo '<div class="radio-inline">';
+echo '<label><input type="radio" name="sex" id="sex2" value="2">woman</label>';
+echo '</div>';
+echo '<div class="radio-inline">';
+echo '<label><input type="radio" name="sex" id="sex3" value="3">intersex</label>';
+echo '</div>';
+echo '</div>';
+echo '<button type="submit" class="btn btn-success">register</button>';
+echo '</form>';
 }
 include_once('templates/'.$theme.'/header.php');
 ?>

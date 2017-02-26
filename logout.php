@@ -10,16 +10,15 @@ session_destroy();
 <?php
 	include_once('templates/'.$theme.'/header.php');
 ?>
-<h1>Log out</h1>
 <?php
 if (!empty($old_user)) {
+	echo '<center>';
 	echo 'Logged out.<br />';
+	echo '</center>';
 } else {
-	echo 'You were not logged in, and so have not been logged out.<br />';
+	echo '<center>';
+	echo 'Warning: You were not logged in, and so have not been logged out.<br />';
+	echo '</center>';
 }
-?>
-<a href="login.php">Back to main page</a>
-<br />
-<?php
 	include_once('templates/'.$theme.'/footer.php');
 ?>

@@ -30,9 +30,10 @@ CREATE TABLE `users_info` (
   `hash` char(129) NOT NULL,
   `salt` char(16) NOT NULL,
   `sex` char(1) DEFAULT NULL,
+  `is_admin` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `nickname` (`nickname`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +42,7 @@ CREATE TABLE `users_info` (
 
 LOCK TABLES `users_info` WRITE;
 /*!40000 ALTER TABLE `users_info` DISABLE KEYS */;
-INSERT INTO `users_info` VALUES (8,'luobo','mengyi','sulitsrc@foxmail.com','$6$zuZhDEy8eVkAm6Ox$PShTdP6J36d1EPKMrTj3ZG23SHYRrpQEQapIlZ/CbtYg4CDgdo1w8hq2s5/IjtfQNB0CCbvgi0FOK8y8G3Q2l0','zuZhDEy8eVkAm6Ox','1'),(9,'sulit','mengyi','sulitsrc@163.com','$6$OUdyqkhh7hVYc402$bO9EdlXV6cHmVid4BWbpnsrq3jzYppr3bmJvuTZ/96MSoTPKd.mHEfIUVd9yA422WEqVrrBSZwQAbuj.hDUcX/','OUdyqkhh7hVYc402','1');
+INSERT INTO `users_info` VALUES (8,'luobo','mengyi','sulitsrc@foxmail.com','$6$zuZhDEy8eVkAm6Ox$PShTdP6J36d1EPKMrTj3ZG23SHYRrpQEQapIlZ/CbtYg4CDgdo1w8hq2s5/IjtfQNB0CCbvgi0FOK8y8G3Q2l0','zuZhDEy8eVkAm6Ox','1',1),(9,'sulit','mengyi','sulitsrc@163.com','$6$OUdyqkhh7hVYc402$bO9EdlXV6cHmVid4BWbpnsrq3jzYppr3bmJvuTZ/96MSoTPKd.mHEfIUVd9yA422WEqVrrBSZwQAbuj.hDUcX/','OUdyqkhh7hVYc402','1',1),(10,'mengyi','mengyi','sulitsrc@gmail.com','$6$Ox7owwdyYw1KuTHm$YNbpJgHCffwdn3/.zHstf1Yp8AuXxHOLXa1NOd/Hl2vplfrqAMB6/J78z9deTAzAq2d4ZE/1ouV9nOsoGO1Bv0','Ox7owwdyYw1KuTHm','1',0),(11,'superlight','mengyi','sulitsrc@test.com','$6$40ofha4monu1M1MG$BO9h5LB4GVMh.svU4pIc8jFckxRQw3RybFYA6hi5MYkyrhJgtYwZYM4esuenNflcEpNRjg0FvW/EjRoqsQTyv/','40ofha4monu1M1MG','1',0),(12,'light','light','light@test.com','$6$JITQBFewRnk1Txvv$BZU/M6vbF/aRnFzY8Ob8Lqwrtj548PnEQKcIU6u2GnQAsIab7zvf0Ej1dx/erivcqqYWyt0q0qKD6zuOCv4RB0','JITQBFewRnk1Txvv','1',0);
 /*!40000 ALTER TABLE `users_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -71,7 +72,7 @@ CREATE TABLE `dns_records` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `dns_records_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users_info` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -80,7 +81,7 @@ CREATE TABLE `dns_records` (
 
 LOCK TABLES `dns_records` WRITE;
 /*!40000 ALTER TABLE `dns_records` DISABLE KEYS */;
-INSERT INTO `dns_records` VALUES (4,'test.com','@','SOA','test.com.',86400,NULL,3600,15,86400,3600,2008082700,'root.domain.com.','ns1.domain.com.',0),(5,'test.com','@','NS','ns1.test.com.',86400,NULL,3600,15,86400,3600,2008082700,'root.domain.com.','ns1.domain.com.',0),(6,'test.com','ns1','A','192.168.5.23',86400,NULL,3600,15,86400,3600,2008082700,'root.domain.com.','ns1.domain.com.',0),(7,'test.com','www','A','192.168.5.23',86400,NULL,3600,15,86400,3600,2008082700,'root.domain.com.','ns1.domain.com.',0);
+INSERT INTO `dns_records` VALUES (4,'test.com','@','SOA','test.com.',86400,NULL,3600,15,86400,3600,2008082700,'root.domain.com.','ns1.domain.com.',0),(5,'test.com','@','NS','ns1.test.com.',86400,NULL,3600,15,86400,3600,2008082700,'root.domain.com.','ns1.domain.com.',0),(6,'test.com','ns1','A','192.168.5.23',86400,NULL,3600,15,86400,3600,2008082700,'root.domain.com.','ns1.domain.com.',0),(7,'test.com','www','A','192.168.5.23',86400,NULL,3600,15,86400,3600,2008082700,'root.domain.com.','ns1.domain.com.',0),(8,'test.com','@','SOA','test.com.',86400,NULL,3600,15,86400,3600,2008082700,'root.domain.com.','ns1.domain.com.',8),(9,'test.com','@','A','test.com',800,NULL,3600,3600,86400,3600,2008082700,'root.chinafreebsd.cn.','ns1.chinafreebsd.cn',8),(10,'test.com','@','A','test.com',800,NULL,3600,3600,86400,3600,2008082700,'root.chinafreebsd.cn.','ns1.chinafreebsd.cn',8),(11,'test.com','@','A','test.com',800,NULL,3600,3600,86400,3600,2008082700,'root.chinafreebsd.cn.','ns1.chinafreebsd.cn',8),(12,'test.com','@','A','test.com',800,NULL,3600,3600,86400,3600,2008082700,'root.chinafreebsd.cn.','ns1.chinafreebsd.cn',8),(13,'test.com','@','A','test.com',800,NULL,3600,3600,86400,3600,2008082700,'root.chinafreebsd.cn.','ns1.chinafreebsd.cn',8),(14,'mengyi.org','@','A','test.com',800,NULL,3600,3600,86400,3600,2008082700,'root.chinafreebsd.cn.','ns1.chinafreebsd.cn',10),(15,'mengyi.org','@','A','test.com',800,NULL,3600,3600,86400,3600,2008082700,'root.chinafreebsd.cn.','ns1.chinafreebsd.cn',10),(16,'mengyi.org','@','A','test.com',800,NULL,3600,3600,86400,3600,2008082700,'root.chinafreebsd.cn.','ns1.chinafreebsd.cn',10),(19,'light.com','@','A','light.org',800,NULL,3600,3600,86400,3600,2008082700,'root.chinafreebsd.cn.','ns1.chinafreebsd.cn',12),(20,'mengyi.org','@','A','test',800,NULL,3600,3600,86400,2800,2008082700,'root.chinafreebsd.cn','ns1.chinafreebsd.cn',12);
 /*!40000 ALTER TABLE `dns_records` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -93,4 +94,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-23  3:09:04
+-- Dump completed on 2017-02-26 18:07:01
