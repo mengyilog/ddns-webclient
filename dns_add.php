@@ -12,8 +12,6 @@ if (isset($_SESSION[ 'valid_user' ])) {
 	echo '<label for="host">host</label><input type="text" class="form-control" id="host" name="host" placeholder="@" value="@">';
 	echo '</div>';
 	echo '<div class="form-group">';
-	echo '<label for="type">type</label><input type="text" class="form-control" id="type" name="type" placeholder="" value="">';
-	echo '<div class="form-group">';
 	echo '<label for="type">type</label>
                                 <select id="type" name="type" class="selectpicker show-tick form-control" data-live-search="false">
                                         <option value="SOA">SOA</option>

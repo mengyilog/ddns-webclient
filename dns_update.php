@@ -29,7 +29,17 @@ if (isset($_SESSION[ 'valid_user' ])) {
 		echo '<label for="host">host</label><input type="text" class="form-control" id="host" name="host" value="'.$select_row[ 'host' ].'" placeholder="'.$select_row[ 'host' ].'">';
   		echo '</div>';
 		echo '<div class="form-group">';
-		echo '<label for="type">type</label><input type="text" class="form-control" id="type" name="type" value="'.$select_row[ 'type' ].'" placeholder="'.$select_row[ 'type' ].'">';
+		echo '<label for="type">type</label>';
+                echo '<select id="type" name="type" class="selectpicker show-tick form-control" data-live-search="false">';
+                echo '                  <option value="'.$select_row[ 'type' ].'">'.$select_row[ 'type' ].'</option>
+                                        <option value="SOA">SOA</option>
+                                        <option value="A">A</option>
+                                        <option value="PTR">PTR</option>
+                                        <option value="CNAME">CNAME</option>
+                                        <option value="NS">NS</option>
+                                        <option value="TEXT">TEXT</option>
+                                        <option value="MX">MX</option>
+                      </select>';
   		echo '</div>';
 		echo '<div class="form-group">';
 		echo '<label for="data">data</label><input data="text" class="form-control" id="data" name="data" value="'.$select_row[ 'data' ].'" placeholder="'.$select_row[ 'data' ].'">';
@@ -67,5 +77,5 @@ if (isset($_SESSION[ 'valid_user' ])) {
 } else {
 	echo 'Please login in.';
 }
-include_once('templates/'.$theme.'/header.php');
+include_once('templates/'.$theme.'/footer.php');
 ?>

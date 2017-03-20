@@ -8,8 +8,8 @@ echo '</title>';
 echo '</head>';
 echo '<body>';
 echo '<div class="container-fluid">';
+echo '<header>';
 echo '<div class="row">';
-echo '<div class="col-xs-12">';
 echo '<center>';
 if (isset($_SESSION[ 'valid_user' ])) {
 	echo 'You are logged in as: '.$_SESSION[ 'valid_user' ].'&nbsp;&nbsp;&nbsp;&nbsp;';
@@ -23,9 +23,9 @@ if (isset($_SESSION[ 'valid_user' ])) {
 }
 echo '</center>';
 echo '</div>';
-echo '</div>';
+echo '</header>';
 echo '<div class="row">';
-echo '<div class="col-xs-2">';
+echo '<div class="col-md-2">';
 echo '</div>';
-echo '<div class="col-xs-8">';
+echo '<div class="col-md-8">';
 ?>
