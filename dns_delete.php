@@ -4,7 +4,7 @@ session_start();
 include_once('templates/'.$theme.'/header.php');
 if (isset($_SESSION[ 'valid_user' ])) {
 	if (isset($_POST[ 'dns_id' ])) {
-		$db_conn = new mysqli( 'localhost', 'root', '123456', 'DNS');
+		$db_conn = new mysqli( $hostname, $database_username, $database_password, $database_name);
 
 		if ($mysqli_connect_errno) {
 			echo $mysqli_connect_errno;

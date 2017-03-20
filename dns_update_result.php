@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION[ 'valid_user' ])) {
-	$db_conn = new mysqli( 'localhost', 'root', '123456', 'DNS');
+	$db_conn = new mysqli( $hostname, $database_username, $database_password, $database_name);
 
 	if ($mysqli_connect_errno) {
 		echo $mysqli_connect_errno;

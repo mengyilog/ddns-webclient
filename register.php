@@ -19,7 +19,7 @@ if (isset($_POST[ 'nickname' ])) {
 	}
 	$hash_value = crypt($password, '$6$'.$salt_value.'$');
 
-	$db_conn = new mysqli( 'localhost', 'root', '123456', 'DNS');
+	$db_conn = new mysqli( $hostname, $database_username, $database_password, $database_name);
 
 	if ($mysqli_connect_errno) {
 		echo $mysqli_connect_errno;
