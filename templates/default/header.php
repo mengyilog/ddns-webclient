@@ -13,7 +13,7 @@ echo '<div class="row">';
 echo '<center>';
 if (isset($_SESSION[ 'valid_user' ])) {
 	echo 'You are logged in as: '.$_SESSION[ 'valid_user' ].'&nbsp;&nbsp;&nbsp;&nbsp;';
-	echo '<a href="logout.php">Log out</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="dns_select.php">Home</a><br />';
+	echo '<a href="logout.php">Log out</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="dns_select.php">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="profile.php">Profile</a><br />';
 	echo '<br />';
 } else {
 	echo '<center>';
